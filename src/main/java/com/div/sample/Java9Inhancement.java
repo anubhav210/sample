@@ -13,7 +13,7 @@ public class Java9Inhancement implements Java9Interface {
 		Java9Interface java9Interface = new Java9Inhancement();
 		java9Interface.test();
 
-		// Try With Resource Enhancement IN JAVA 7
+		// Try With Resource Enhancement IN JAVA 7 and 8
 
 		try (FileOutputStream fileStream = new FileOutputStream("G:\\project\\JAVA_8_FEATURE\\document\\test.txt");) {
 			String greeting = "Welcome to java 9 feature.";
