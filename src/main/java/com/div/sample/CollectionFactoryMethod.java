@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class CollectionFactoryMethod {
 
+
 	public static void main(String[] args) {
 
 		// USING JAVA 8 SIMPLE WAY
@@ -23,6 +24,7 @@ public class CollectionFactoryMethod {
 		// USING JAVA 9
 		System.out.println("========================================================");
 		List<String> list1 = List.of("Java", "JavaFX", "Spring", "Hibernate", "JSP");
+
 		for (String l : list1) {
 			System.out.println(l);
 		}
@@ -33,6 +35,11 @@ public class CollectionFactoryMethod {
 		for (String l : set) {
 			System.out.println(l);
 		}
+
+		System.out.println("========================================================");
+
+		Map<String, Integer> map1 = Map.of("test", 1, "test1", 2);
+		System.out.println(map1);
 
 		System.out.println("========================================================");
 
@@ -48,6 +55,7 @@ public class CollectionFactoryMethod {
 
 		System.out.println("========================================================");
 
+		// PROCESS API INHANCEMENT=============>
 		ProcessHandle currentProcess = ProcessHandle.current(); // Current processhandle
 		System.out.println("Process Id: " + currentProcess.pid()); // Process id
 		System.out.println("Direct children: " + currentProcess.children()); // Direct children of the process
@@ -59,7 +67,7 @@ public class CollectionFactoryMethod {
 
 		System.out.println("========================================================");
 
-		// VERSION INFORMATION
+		// VERSION INFORMATION===================>
 
 		Runtime.Version version = Runtime.version(); // Getting runtime version instance
 		System.out.println("Current version is " + version); // Getting current Java version
@@ -68,12 +76,6 @@ public class CollectionFactoryMethod {
 		System.out.println("Security version number " + version.security()); // Getting security version number
 		System.out.println("Pre-released information " + version.pre()); // Getting pre-release version information
 		System.out.println("Build Number " + version.build()); // Getting Optional build number
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }
