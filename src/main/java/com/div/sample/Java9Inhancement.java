@@ -3,10 +3,10 @@ package com.div.sample;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Java9Inhancement implements Java9Interface {
-	static final Logger logger = Logger.getLogger(Java9Inhancement.class);
 
 	public static void main(String[] args) throws FileNotFoundException {
 
@@ -19,9 +19,9 @@ public class Java9Inhancement implements Java9Interface {
 			String greeting = "Welcome to java 9 feature.";
 			byte b[] = greeting.getBytes();
 			fileStream.write(b);
-			logger.info("File written");
+			log.info("{}", "File written");
 		} catch (Exception e) {
-			logger.info(e);
+			log.info("{}", e);
 		}
 
 		// Try With Resource Enhancement IN JAVA 9
@@ -31,9 +31,9 @@ public class Java9Inhancement implements Java9Interface {
 			String greeting = "Welcome to java 9 feature in text1 file.";
 			byte b[] = greeting.getBytes();
 			fileStream.write(b);
-			System.out.println("File written");
+			log.info("{}", "File written");
 		} catch (Exception e) {
-			System.out.println(e);
+			log.info("{}", e);
 		}
 	}
 

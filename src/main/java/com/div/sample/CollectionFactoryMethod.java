@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class CollectionFactoryMethod {
 
 
@@ -18,30 +21,30 @@ public class CollectionFactoryMethod {
 		list.add("Hibernate");
 		list.add("JSP");
 		for (String l : list) {
-			System.out.println(l);
+			log.info("{}", l);
 		}
 
 		// USING JAVA 9
-		System.out.println("========================================================");
+		log.info("{}", "========================================================");
 		List<String> list1 = List.of("Java", "JavaFX", "Spring", "Hibernate", "JSP");
 
 		for (String l : list1) {
-			System.out.println(l);
+			log.info("{}", l);
 		}
 
-		System.out.println("========================================================");
+		log.info("{}", "========================================================");
 
 		Set<String> set = Set.of("Java", "JavaFX", "Spring", "Hibernate", "JSP");
 		for (String l : set) {
-			System.out.println(l);
+			log.info("{}", l);
 		}
 
-		System.out.println("========================================================");
+		log.info("{}", "========================================================");
 
 		Map<String, Integer> map1 = Map.of("test", 1, "test1", 2);
-		System.out.println(map1);
+		log.info("{}", map1);
 
-		System.out.println("========================================================");
+		log.info("{}", "========================================================");
 
 		// Creating Map Entry
 		Map.Entry<Integer, String> e1 = Map.entry(101, "Java");
@@ -50,32 +53,32 @@ public class CollectionFactoryMethod {
 		Map<Integer, String> map = Map.ofEntries(e1, e2);
 		// Iterating Map
 		for (Map.Entry<Integer, String> m : map.entrySet()) {
-			System.out.println(m.getKey() + " " + m.getValue());
+			log.info("{}", m.getKey() + " " + m.getValue());
 		}
 
-		System.out.println("========================================================");
+		log.info("{}", "========================================================");
 
 		// PROCESS API INHANCEMENT=============>
 		ProcessHandle currentProcess = ProcessHandle.current(); // Current processhandle
-		System.out.println("Process Id: " + currentProcess.pid()); // Process id
-		System.out.println("Direct children: " + currentProcess.children()); // Direct children of the process
-		System.out.println("Class name: " + currentProcess.getClass()); // Class name
-		System.out.println("All processes: " + ProcessHandle.allProcesses()); // All current processes
-		System.out.println("Process info: " + currentProcess.info()); // Process info
-		System.out.println("Is process alive: " + currentProcess.isAlive());
-		System.out.println("Process's parent " + currentProcess.parent()); // Parent of the process
+		log.info("{}", "Process Id: " + currentProcess.pid()); // Process id
+		log.info("{}", "Direct children: " + currentProcess.children()); // Direct children of the process
+		log.info("{}", "Class name: " + currentProcess.getClass()); // Class name
+		log.info("{}", "All processes: " + ProcessHandle.allProcesses()); // All current processes
+		log.info("{}", "Process info: " + currentProcess.info()); // Process info
+		log.info("{}", "Is process alive: " + currentProcess.isAlive());
+		log.info("{}", "Process's parent " + currentProcess.parent()); // Parent of the process
 
-		System.out.println("========================================================");
+		log.info("{}", "========================================================");
 
 		// VERSION INFORMATION===================>
 
 		Runtime.Version version = Runtime.version(); // Getting runtime version instance
-		System.out.println("Current version is " + version); // Getting current Java version
-		System.out.println("Major version number " + version.major()); // Getting major version number
-		System.out.println("Minor version number " + version.minor()); // Getting minor version number
-		System.out.println("Security version number " + version.security()); // Getting security version number
-		System.out.println("Pre-released information " + version.pre()); // Getting pre-release version information
-		System.out.println("Build Number " + version.build()); // Getting Optional build number
+		log.info("{}", "Current version is " + version); // Getting current Java version
+		log.info("{}", "Major version number " + version.major()); // Getting major version number
+		log.info("{}", "Minor version number " + version.minor()); // Getting minor version number
+		log.info("{}", "Security version number " + version.security()); // Getting security version number
+		log.info("{}", "Pre-released information " + version.pre()); // Getting pre-release version information
+		log.info("{}", "Build Number " + version.build()); // Getting Optional build number
 
 	}
 }

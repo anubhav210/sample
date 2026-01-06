@@ -4,59 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
-class Product {
-
-	public Product() {
-	}
-
-	int id;
-	String name;
-	float price;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public float getPrice() {
-		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
-	public Product(int id, String name, float price) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-	}
-
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
-	}
-
-}
-
+@Slf4j
 public class Stream {
-	static final Logger logger = Logger.getLogger(Stream.class);
 
 	public static void main(String[] args) {
 
@@ -71,10 +24,10 @@ public class Stream {
 		// STREAM FILTER
 
 		// productsList.stream().filter(f -> f.getId() != 3).forEach(f ->
-		// logger.info(f.getName()));
+		// log.info(f.getName()));
 
 		// productsList.stream().filter(f -> f.getName().equals("Sony
-		// Laptop")).forEach(f -> logger.info(f.getId()));
+		// Laptop")).forEach(f -> log.info(f.getId()));
 
 		/*
 		 * productsList.stream().map(mapper -> { String s = mapper.getName();
@@ -84,24 +37,24 @@ public class Stream {
 		// REDUCE METHOD
 
 		float salary = productsList.stream().map(Product::getPrice).reduce(0.0f, (sum, price) -> sum + price);
-		// logger.info(salary);
+		// log.info(salary);
 
 		double totalPrice = productsList.stream().collect(Collectors.summingDouble(product -> product.price));
-		// logger.info(totalPrice);
+		// log.info(totalPrice);
 
-		// logger.info("All Match:- " + productsList.stream().allMatch(f ->
+		// log.info("All Match:- " + productsList.stream().allMatch(f ->
 		// f.getName().contains("Laptop")));
 
-		// logger.info("Any match:- " + productsList.stream().anyMatch(f -> f.getId() ==
+		// log.info("Any match:- " + productsList.stream().anyMatch(f -> f.getId() ==
 		// 4));
 
-		// logger.info("none match:- " + productsList.stream().noneMatch(f -> f.getId()
+		// log.info("none match:- " + productsList.stream().noneMatch(f -> f.getId()
 		// == 4));
 
-		// logger.info("find any:- " + productsList.stream().filter(f -> f.getId() ==
+		// log.info("find any:- " + productsList.stream().filter(f -> f.getId() ==
 		// 3).findAny().get().getName());
 
-		// logger.info("find first:- " + productsList.stream().filter(f -> f.getId() ==
+		// log.info("find first:- " + productsList.stream().filter(f -> f.getId() ==
 		// 3).findFirst().get().getName());
 
 		// FLAT MAP
@@ -112,10 +65,10 @@ public class Stream {
 		List<Integer> evenNumbers = Arrays.asList(2, 4, 6, 8);
 
 		List<List<Integer>> listOfListofInts = Arrays.asList(primeNumbers, oddNumbers, evenNumbers);
-		// System.out.println(listOfListofInts);
+		// log.info(listOfListofInts);
 
 		List<Integer> listOfInteger = listOfListofInts.stream().flatMap(f -> f.stream()).collect(Collectors.toList());
-		// System.out.println(listOfInteger);
+		// log.info(listOfInteger);
 
 		// STREAM GENERATE METHOD // GENERATE INFITE SEQUESTION UNORDERED STREAM
 
@@ -130,16 +83,16 @@ public class Stream {
 
 		Product productMax = productsList.stream().max((product1, product2) -> product1.price > product2.price ? 1 : -1)
 				.get();
-		// logger.info("MAX PRICIE-> " + productMax.getPrice());
+		// log.info("MAX PRICIE-> " + productMax.getPrice());
 
 		// MIN METHOD IN STREAM
 
 		Product productMin = productsList.stream().max((product1, product2) -> product1.price < product2.price ? 1 : -1)
 				.get();
-		// logger.info("MIN PRICIE-> " + productMin.getPrice());
+		// log.info("MIN PRICIE-> " + productMin.getPrice());
 
 		// COUNT FUNCTION USING STREAM
-		// logger.info(productsList.stream().filter(f -> f.getPrice() >
+		// log.info(productsList.stream().filter(f -> f.getPrice() >
 		// 28000f).count());
 
 		// LIST TO SET IN STREAM
@@ -152,31 +105,31 @@ public class Stream {
 		proList.add(new Product(2, "Dell Laptop", 30000f));
 		proList.add(new Product(3, "Lenevo Laptop", 28000f));
 		proList.add(new Product(4, "Sony Laptop", 28000f));
-		// logger.info(proList.stream().collect(Collectors.toMap(k -> k.id, v ->
+		// log.info(proList.stream().collect(Collectors.toMap(k -> k.id, v ->
 		// v.name)));
 
 		// PARTISION BY
 		Map<Boolean, List<Product>> partionedByList = productsList.stream()
 				.collect(Collectors.partitioningBy(f -> f.getPrice() > 28000f));
 
-		// logger.info(partionedByList.get(true));
-		// logger.info(partionedByList.get(false));
+		// log.info(partionedByList.get(true));
+		// log.info(partionedByList.get(false));
 
 		// DIFFERENCE B/W stream and parallet stream
-		// productsList.parallelStream().forEach(f -> logger.info(f.getId()));
-		System.out.println("==================================================");
-		// productsList.stream().forEach(f -> logger.info(f.getId()));
+		// productsList.parallelStream().forEach(f -> log.info(f.getId()));
+		log.info("==================================================");
+		// productsList.stream().forEach(f -> log.info(f.getId()));
 
 		// LIST TO ARRAY
 		Object[] ppList = productsList.stream().toArray();
-		//System.out.println(ppList);
+		//log.info(ppList);
 		List<Object> pp = Arrays.asList(ppList);
-		//System.out.println(pp);
+		//log.info(pp);
 
 		List<Integer> intList = Arrays.asList(1, 20, 3, 4, 10, 5, 9, 2, 20, 30);
 		// intList.stream().forEachOrdered(logger::info);
-		System.out.println("==================================================>>>>");
-		intList.stream().filter(f -> f>2).peek(a -> logger.info(a)).filter(f -> f>10).peek(a -> logger.info("next result :-  "+a)).collect(Collectors.toList());
+		log.info("==================================================>>>>");
+		intList.stream().filter(f -> f>2).peek(a -> log.info("{}", a)).filter(f -> f>10).peek(a -> log.info("next result :-  "+a)).collect(Collectors.toList());
 
 	}
 }
